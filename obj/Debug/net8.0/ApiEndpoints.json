@@ -1,0 +1,18 @@
+[
+  {
+    "ContainingType": "ApiAppTransporte.Controllers.UbicacionRutasController",
+    "Method": "GetUbicacionActual",
+    "RelativePath": "api/UbicacionRutas/GetUbicacionActual",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rutaId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
