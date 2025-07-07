@@ -10,16 +10,38 @@
         "tags": [
           "UbicacionRutas"
         ],
-        "parameters": [
-          {
-            "name": "rutaId",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
+        "responses": {
+          "200": {
+            "description": "OK"
           }
+        }
+      }
+    },
+    "/api/Usuarios/EnviarDatosUsuario": {
+      "post": {
+        "tags": [
+          "Usuarios"
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -28,5 +50,30 @@
       }
     }
   },
-  "components": { }
+  "components": {
+    "schemas": {
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoUsuario": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
 }

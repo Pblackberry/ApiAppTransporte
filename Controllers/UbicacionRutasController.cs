@@ -1,43 +1,56 @@
 ﻿
+using ApiAppTransporte.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using ApiAppTransporte.Models;
+using System.Text.Json;
 namespace ApiAppTransporte.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class UbicacionRutasController : Controller
     {
-        string connectionString = "Server=LAPTOP-OJJP1HNK;Database=SLR_DB;User Id=adminRutas;Password=admin;TrustServerCertificate=True;";
+        private readonly HttpClient _httpClient;
+
+        public UbicacionRutasController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClient = httpClientFactory.CreateClient();
+        }
         [Route("[action]")]
         [HttpGet]
-        public ActionResult GetUbicacionActual(int rutaId)
+        public async Task<ActionResult> GetUbicacionActual()
         {
+            string springUrl = "http://localhost:8080/api/rutas"; 
 
-            string query = $"SELECT TOP 1 longitud, latitud FROM Ruta WHERE id = @rutaId";
-            Rutas.Coordenadas ubicacion = new();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
+                var response = await _httpClient.GetAsync(springUrl);
+                if (!response.IsSuccessStatusCode)
+                    return StatusCode((int)response.StatusCode, "Error al obtener rutas desde Spring");
 
-                using (SqlCommand command = new SqlCommand(query, conn))
-                {
-                    command.Parameters.AddWithValue("@rutaId", rutaId);
-                    using (SqlDataReader reader = command.ExecuteReader())
+                var json = await response.Content.ReadAsStringAsync();
+
+                using var doc = JsonDocument.Parse(json);
+                var root = doc.RootElement;
+
+                var rutasFiltradas = root.EnumerateArray()
+                    .Select(ruta => new UbicacionRuta
                     {
-                        while (reader.Read())
-                        {
+                        id = ruta.GetProperty("id").GetInt32(),
+                        nombre = ruta.GetProperty("nombre").ToString(),
+                        distancia = ruta.TryGetProperty("distancia", out var dist)
+                                    && dist.ValueKind != JsonValueKind.Null ? dist.ToString() : "",
+                        placa = ruta.TryGetProperty("placa", out var placa)
+                                && placa.ValueKind != JsonValueKind.Null ? placa.ToString() : ""
+                    })
+                    .ToList();
 
-                            ubicacion.latitud = double.Parse(reader.GetValue(0).ToString());
-                            ubicacion.longitud = double.Parse(reader.GetValue(1).ToString());
-
-                        }
-                    }
-                }
-                
+                return Ok(rutasFiltradas);
             }
-            return Ok(ubicacion);
-
+            catch (HttpRequestException ex)
+            {
+                return StatusCode(500, $"Error de conexión: {ex.Message}");
+            }
         }
+
     }
 }

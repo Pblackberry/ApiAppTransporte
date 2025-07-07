@@ -6,11 +6,21 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiAppTransporte.Controllers.UsuariosController",
+    "Method": "EnviarDatosUsuario",
+    "RelativePath": "api/Usuarios/EnviarDatosUsuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
     "Parameters": [
       {
-        "Name": "rutaId",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "newUser",
+        "Type": "ApiAppTransporte.Models.Usuario",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
