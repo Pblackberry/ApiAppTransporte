@@ -6,7 +6,7 @@ Este proyecto contiene una API REST para gestionar rutas de transporte, desarrol
 
 ## 🚀 Tecnologías
 
-- .NET Core 7 / 6
+- .NET Core 8
 - ASP.NET Core Web API
 - Docker
 - C#

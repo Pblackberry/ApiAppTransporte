@@ -23,10 +23,6 @@ artifacts/
 *.log
 *.pid
 
-# Docker
-*.dockerignore
-Dockerfile
-
 # Logs
 *.log
 
