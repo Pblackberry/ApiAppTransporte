@@ -19,7 +19,7 @@ namespace ApiAppTransporte.Controllers
         [HttpGet]
         public async Task<ActionResult> GetUbicacionActual()
         {
-            string springUrl = "http://localhost:8080/api/rutas"; 
+            string springUrl = "http://host.docker.internal:8080/api/rutas"; 
 
             try
             {

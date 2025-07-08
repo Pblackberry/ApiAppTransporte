@@ -25,7 +25,7 @@ namespace ApiAppTransporte.Controllers
             Encoding.UTF8,
             "application/json");
 
-            string springUri = "http://localhost:8080/api/usuarios";
+            string springUri = "http://host.docker.internal:8080/api/usuarios";
             var response = await _httpClient.PostAsync(springUri, jsonContent);
             if (response.IsSuccessStatusCode)
             {

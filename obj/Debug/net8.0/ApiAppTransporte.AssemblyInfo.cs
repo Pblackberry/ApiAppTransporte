@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiAppTransporte")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6582ce9a81f3e847c263dbd576f18de43f5d9b54")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+855ffa402bd93548ef305f28fc9d0e7f09bc3bda")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiAppTransporte")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiAppTransporte")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

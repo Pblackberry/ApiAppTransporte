@@ -1,0 +1,41 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+.history/
+*.code-workspace
+
+# .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET
+*.db
+*.log
+*.pid
+
+# Docker
+*.dockerignore
+Dockerfile
+
+# Logs
+*.log
+
+# Rider
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# GitHub
+.github/
